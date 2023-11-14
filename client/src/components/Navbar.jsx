@@ -1,7 +1,7 @@
 const Navbar = () => {
   return (
     <>
-      <h1>NAVBAR</h1>
+      <h1 className="bg-royalblue">NAVBAR</h1>
     </>
   );
 };

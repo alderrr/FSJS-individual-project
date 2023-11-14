@@ -83,6 +83,11 @@ class Controller {
   static async addWishlist(req, res, next) {
     try {
       const UserId = req.user.id;
+      if (!UserId) {
+        throw {
+          name: `Please Login First`,
+        };
+      }
       const { type, name } = req.body;
       const payload = {
         type,

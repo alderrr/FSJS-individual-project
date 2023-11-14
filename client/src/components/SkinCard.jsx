@@ -8,28 +8,23 @@ const SkinCard = ({ items, setItems }) => {
   const navigate = useNavigate();
   return (
     <>
-      {/* {JSON.stringify(items)} */}
-      {items.length}
-
-      <pre>{JSON.stringify(items, null, 2)}</pre>
-
-      {items?.map((item) => {
-        return (
-          <div key={item?.id}>
-            a
-            {/* <Link className="bg-black hover:bg-stone-900">
-            <div className="">
-              <img src={item?.images?.background} alt={item?.name} />
+      <div className="grid grid-cols-8 gap-2 bg-aldergrey">
+        {items?.map((item) => {
+          return (
+            <div key={item?.id} className="">
+              <Link className="bg-black hover:bg-stone-900">
+                <div className="bg-white">
+                  <img
+                    className="rounded-2xl"
+                    src={item?.images?.background}
+                    alt={item?.name}
+                  />
+                </div>
+              </Link>
             </div>
-            <div className="">{item?.name}</div>
-            <div className="">
-              <div className="">Wishlist</div>
-              <div className="">Locker</div>
-            </div>
-          </Link> */}
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </>
   );
 };
