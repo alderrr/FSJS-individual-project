@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "username": "Alder",
+    "email": "alder@mail.com",
+    "password": "12345678",
+    "imageUrl": "https://ik.imagekit.io/alder/AD_Avatar.png?updatedAt=1699931069723"
+  },
+  {
+    "id": 2,
+    "username": "Swan&Mallard",
+    "email": "swan@mallard.com",
+    "password": "12345678",
+    "imageUrl": "https://ik.imagekit.io/alder/SwanMallardLogoSquare.png?updatedAt=1699521163387"
+  }
+]

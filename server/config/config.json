@@ -1,0 +1,17 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "iproject_db",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "iproject_test",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {}
+}
