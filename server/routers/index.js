@@ -1,13 +1,21 @@
 const Controller = require("../controllers/controller");
 const router = require("express").Router();
-// const authentication = require("../middlewares/authentication");
-// const authorization = require("../middlewares/authorization");
+const authentication = require("../middlewares/authentication");
+const authorization = require("../middlewares/authorization");
+
 // const multerUpload = require("../middlewares/multer");
 
 router.post("/register", Controller.register);
 router.post("/login", Controller.login);
+router.get("/items", Controller.getItems);
 
-// router.use(authentication);
+router.use(authentication);
+
+router.post("/wishlist", Controller.addWishlist);
+router.get("/wishlist", Controller.getWishlist);
+
+router.put("/wishlist/:id", Controller.editWishlist);
+router.delete("/wishlist/:id", Controller.deleteWishlist);
 
 // router.post("/wishlist", Controller.addCuisine);
 // router.get("/wishlist", Controller.readCuisines);
