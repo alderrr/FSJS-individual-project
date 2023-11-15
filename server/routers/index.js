@@ -7,6 +7,7 @@ const authorization = require("../middlewares/authorization");
 
 router.post("/register", Controller.register);
 router.post("/login", Controller.login);
+router.post("/google-sign", Controller.googleSign);
 router.get("/items", Controller.getItems);
 
 router.use(authentication);

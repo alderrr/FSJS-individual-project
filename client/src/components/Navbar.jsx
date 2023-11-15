@@ -1,7 +1,13 @@
 const Navbar = () => {
   return (
     <>
-      <h1 className="bg-royalblue">NAVBAR</h1>
+      <div className="bg-royalblue h-12">
+        <img
+          className="h-full"
+          src="https://ik.imagekit.io/alder/FortniteLogo.png?updatedAt=1699977655775"
+          alt="Fortnite"
+        />
+      </div>
     </>
   );
 };

@@ -12,8 +12,8 @@ const HomePage = () => {
       try {
         setIsLoading(true);
         const { data } = await axios.get(`${url}/items`);
-        setItems(data.slice(0, 10));
-        // setItems(data);
+        // setItems(data.slice(0, 10));
+        setItems(data);
       } catch (error) {
         console.log(error);
         setError(error);
@@ -23,7 +23,7 @@ const HomePage = () => {
     }
     fetchItems();
   }, []);
-  if (isLoading) return <p className="h-screen bg-aldergrey">Loading...</p>;
+  if (isLoading) return <p className="h-screen bg-aldergrey animate-pulse"></p>;
   if (error)
     return (
       <p className="h-screen bg-aldergrey text-red-500">

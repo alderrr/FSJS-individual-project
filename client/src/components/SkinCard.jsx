@@ -8,12 +8,12 @@ const SkinCard = ({ items, setItems }) => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="grid grid-cols-8 gap-2 bg-aldergrey">
+      <div className="w-[100dvw] space-y-4 flex flex-row flex-wrap justify-center items-center space-x-4 bg-aldergrey">
         {items?.map((item) => {
           return (
             <div key={item?.id} className="">
-              <Link className="bg-black hover:bg-stone-900">
-                <div className="bg-white">
+              <Link>
+                <div className="bg-white w-48 hover:scale-110 transition-all hover:brightness-125">
                   <img
                     className="rounded-2xl"
                     src={item?.images?.background}

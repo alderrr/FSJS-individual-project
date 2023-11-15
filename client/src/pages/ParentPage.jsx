@@ -4,7 +4,10 @@ import Navbar from "../components/Navbar";
 const ParentPage = () => {
   return (
     <>
-      <Navbar />
+      <div className="gap-4">
+        <Navbar />
+      </div>
+
       <Outlet />
     </>
   );
