@@ -3,6 +3,9 @@ import ParentPage from "../pages/ParentPage";
 import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
 import HomePage from "../pages/HomePage";
+import WishlistPage from "../pages/WishlistPage";
+import LockerPage from "../pages/LockerPage";
+import ShopPage from "../pages/ShopPage";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +50,18 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/shop",
+        element: <ShopPage />,
+      },
+      {
+        path: "/wishlist",
+        element: <WishlistPage />,
+      },
+      {
+        path: "/locker",
+        element: <LockerPage />,
       },
     ],
   },

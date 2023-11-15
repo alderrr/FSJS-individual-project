@@ -9,6 +9,7 @@ router.post("/register", Controller.register);
 router.post("/login", Controller.login);
 router.post("/google-sign", Controller.googleSign);
 router.get("/items", Controller.getItems);
+router.get("/shops", Controller.getShops);
 
 router.use(authentication);
 

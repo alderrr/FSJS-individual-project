@@ -4,24 +4,24 @@ import axios from "axios";
 import Toastify from "toastify-js";
 import Swal from "sweetalert2";
 
-const SkinCard = ({ items, setItems }) => {
+const ItemCard = ({ items, setItems }) => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="w-[100dvw] space-y-4 flex flex-row flex-wrap justify-center items-center space-x-4 bg-aldergrey">
+      <div className="w-[100dvw] pt-24 py-10 gap-4 flex flex-row flex-wrap justify-center bg-aldergrey">
         {items?.map((item) => {
           return (
-            <div key={item?.id} className="">
-              <Link>
+            <Link>
+              <div key={item?.id} className="">
                 <div className="bg-white w-48 hover:scale-110 transition-all hover:brightness-125">
                   <img
                     className="rounded-2xl"
-                    src={item?.images?.background}
+                    src={item?.images?.full_background}
                     alt={item?.name}
                   />
                 </div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           );
         })}
       </div>
@@ -29,4 +29,4 @@ const SkinCard = ({ items, setItems }) => {
   );
 };
 
-export default SkinCard;
+export default ItemCard;

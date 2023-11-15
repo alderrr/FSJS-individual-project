@@ -109,7 +109,9 @@ class Controller {
         method: "get",
         headers: { Authorization: fornite_api },
       });
-      res.status(200).json(data.items);
+      const filterData = data.items.filter((item) => item.price > 0);
+      // console.log(data);
+      res.status(200).json(filterData);
     } catch (error) {
       console.log(error);
       next(error);
@@ -123,7 +125,8 @@ class Controller {
         method: "get",
         headers: { Authorization: fornite_api },
       });
-      res.status(200).json(data.items);
+      // console.log(data);
+      res.status(200).json(data.shop);
     } catch (error) {
       console.log(error);
       next(error);

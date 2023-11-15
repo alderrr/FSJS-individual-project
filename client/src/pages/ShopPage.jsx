@@ -1,19 +1,18 @@
 import { useState, useEffect } from "react";
 import { url } from "../configs/config";
 import axios from "axios";
-import ItemCard from "../components/ItemCard";
+import ShopCard from "../components/ShopCard";
 
-const HomePage = () => {
+const ShopPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [items, setItems] = useState([]);
+  const [shops, setShops] = useState([]);
   useEffect(() => {
-    async function fetchItems() {
+    async function fetchShops() {
       try {
         setIsLoading(true);
-        const { data } = await axios.get(`${url}/items`);
-        setItems(data.slice(0, 100));
-        // setItems(data);
+        const { data } = await axios.get(`${url}/shops`);
+        setShops(data);
       } catch (error) {
         console.log(error);
         setError(error);
@@ -21,10 +20,9 @@ const HomePage = () => {
         setIsLoading(false);
       }
     }
-    fetchItems();
+    fetchShops();
   }, []);
-  if (isLoading)
-    return <p className="h-screen w-full bg-aldergrey animate-pulse"></p>;
+  if (isLoading) return <p className="h-screen bg-aldergrey animate-pulse"></p>;
   if (error)
     return (
       <p className="h-screen bg-aldergrey text-red-500">
@@ -33,12 +31,12 @@ const HomePage = () => {
     );
   return (
     <>
-      {/* {JSON.stringify(items)} */}
-      <div className="h-screen w-full bg-aldergrey ">
-        <ItemCard items={items} setItems={setItems} />
+      {/* {JSON.stringify(shops)} */}
+      <div className="bg-aldergrey h-screen w-screen">
+        <ShopCard shops={shops} setShops={setShops} />
       </div>
     </>
   );
 };
 
-export default HomePage;
+export default ShopPage;
