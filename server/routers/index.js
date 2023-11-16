@@ -15,6 +15,7 @@ router.use(authentication);
 
 router.post("/wishlist", Controller.addWishlist);
 router.get("/wishlist", Controller.getWishlist);
+router.get("/wishlist/:id", Controller.getWishlistItem);
 
 router.put("/wishlist/:id", Controller.editWishlist);
 router.delete("/wishlist/:id", Controller.deleteWishlist);

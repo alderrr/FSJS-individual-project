@@ -1,10 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-import Toastify from "toastify-js";
-import Swal from "sweetalert2";
-import { url } from "../configs/config";
-import axios from "axios";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { url } from "../configs/config";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import axios from "axios";
+import Swal from "sweetalert2";
+import Toastify from "toastify-js";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -24,7 +24,10 @@ const LoginPage = () => {
       localStorage.setItem("access_token", access_token);
       navigate("/");
       Swal.fire({
-        title: "Welcome to FortHub",
+        // title: "Welcome to FortHub",
+        icon: "success",
+        imageUrl:
+          "https://ik.imagekit.io/alder/SWAL_WELCOME%20TO%20FORTHUB.png?updatedAt=1700118165843",
       });
     } catch (error) {
       console.log(error);
@@ -37,6 +40,32 @@ const LoginPage = () => {
       }).showToast();
     }
   };
+  // const googleSignIn = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const { data } = await axios({
+  //       url: `${url}/google-sign`,
+  //       method: "post",
+  //       headers: {
+  //         google_token: response.credential,
+  //       },
+  //     });
+  //     localStorage.setItem("access_token", data.access_token);
+  //     navigate("/");
+  //     Swal.fire({
+  //       title: "Welcome to FortHub",
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //     Toastify({
+  //       text: error.response.data.message,
+  //       className: "info",
+  //       style: {
+  //         background: "linear-gradient(to right, #ff9a00, #ff5a00)",
+  //       },
+  //     }).showToast();
+  //   }
+  // };
   return (
     <>
       <div className="flex flex-row justify-center h-screen w-full bg-aldergrey">

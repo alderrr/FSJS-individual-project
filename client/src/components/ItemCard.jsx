@@ -13,12 +13,40 @@ const ItemCard = ({ items, setItems }) => {
         name,
         image,
       };
-      // console.log(payload);
-      await axios.post(`${url}/wishlist`, payload, {
+      const { data } = await axios.get(`${url}/wishlist/${ItemId}`, {
         headers: { Authorization: `Bearer ${localStorage.access_token}` },
       });
+      const alreadyWishlishted = data;
+      if (alreadyWishlishted) {
+        Swal.fire({
+          icon: "info",
+          imageUrl:
+            "https://ik.imagekit.io/alder/SWAL_ITEM%20ALREADY%20IN%20WISHLIST.png?updatedAt=1700124585896",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        return;
+      }
       Swal.fire({
-        text: "Item added to Wishlist",
+        imageUrl:
+          "https://ik.imagekit.io/alder/SWAL_ADD%20TO%20WISHLIST.png?updatedAt=1700120278081",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.post(`${url}/wishlist`, payload, {
+            headers: { Authorization: `Bearer ${localStorage.access_token}` },
+          });
+          Swal.fire({
+            icon: "success",
+            imageUrl:
+              "https://ik.imagekit.io/alder/SWAL_ITEM%20ADDED%20TO%20WISHLIST.png?updatedAt=1700120277825",
+          });
+        }
       });
     } catch (error) {
       console.log(error);
@@ -34,11 +62,9 @@ const ItemCard = ({ items, setItems }) => {
   };
   return (
     <>
-      <div className="w-[100dvw] pt-24 py-10 gap-4 flex flex-row flex-wrap justify-center bg-aldergrey">
+      <div className="w-[100dvw] px-24 pt-24 py-10 gap-4 flex flex-row flex-wrap justify-center bg-aldergrey">
         {items?.map((item) => {
           return (
-            // <Link>
-
             <div
               key={item?.id}
               className="cursor-pointer"
@@ -58,8 +84,6 @@ const ItemCard = ({ items, setItems }) => {
                 />
               </div>
             </div>
-
-            // </Link>
           );
         })}
       </div>

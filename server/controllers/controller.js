@@ -6,6 +6,7 @@ const axios = require("axios");
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const fornite_api = process.env.FORTNITE_API_KEY;
+const nodemailer = require("nodemailer");
 
 // const imagekit = require("../api/imagekit"); // kalau mau pakai ini jangan lupa npm install
 
@@ -126,6 +127,7 @@ class Controller {
       next(error);
     }
   }
+
   static async getShops(req, res, next) {
     try {
       const { data } = await axios({
@@ -197,6 +199,22 @@ class Controller {
       next(error);
     }
   }
+  static async getWishlistItem(req, res, next) {
+    try {
+      const ItemId = req.params.id;
+      const UserId = req.user.id;
+      const data = await Wishlist.findOne({
+        where: {
+          UserId,
+          ItemId,
+        },
+      });
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error, "getWishlist");
+      next(error);
+    }
+  }
   static async editWishlist(req, res, next) {}
   static async deleteWishlist(req, res, next) {
     try {
@@ -214,6 +232,33 @@ class Controller {
       });
       res.status(200).json({
         message: `Item removed from Wishlist`,
+      });
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+  static async nodemailer(req, res, next) {
+    try {
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "project.alderder@gmail.com",
+          pass: process.env.NODEMAILER_PASS,
+        },
+      });
+      const options = {
+        from: "project.alderder@gmail.com",
+        to: "",
+        subject: "",
+        text: "Your wishlisted item(s) is available now!",
+      };
+      transporter.sendMail(options, (err, info) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        console.log("Sent: " + info.response);
       });
     } catch (error) {
       console.log(error);

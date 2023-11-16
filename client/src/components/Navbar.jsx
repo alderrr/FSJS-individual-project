@@ -4,10 +4,20 @@ import Swal from "sweetalert2";
 const Navbar = () => {
   const navigate = useNavigate();
   const onClickLogout = async (event) => {
-    localStorage.clear();
-    navigate("/login");
     Swal.fire({
-      text: "Logout Success",
+      imageUrl:
+        "https://ik.imagekit.io/alder/SWAL_ARE%20YOU%20SURE.png?updatedAt=1700118878939",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.clear();
+        navigate("/login");
+      }
     });
   };
   return (
@@ -38,13 +48,6 @@ const Navbar = () => {
               className="h-4"
               src="https://ik.imagekit.io/alder/WISHLIST.png?updatedAt=1700102051399"
               alt="WISHLIST"
-            />
-          </Link>
-          <Link to={"/locker"}>
-            <img
-              className="h-4"
-              src="https://ik.imagekit.io/alder/LOCKER.png?updatedAt=1700102051396"
-              alt="LOCKER"
             />
           </Link>
           <img

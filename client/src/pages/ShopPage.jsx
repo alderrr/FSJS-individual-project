@@ -37,8 +37,16 @@ const ShopPage = () => {
   return (
     <>
       {/* {JSON.stringify(shops)} */}
-      <div className="bg-aldergrey h-screen w-screen">
-        <ShopCard shops={shops} setShops={setShops} />
+      <div className="bg-aldergrey h-screen w-full">
+        <div className="flex flex-column justify-center items-center pt-[100px]">
+          <img
+            src="https://ik.imagekit.io/alder/DAILY%20ITEM%20SHOP.png?updatedAt=1700121877041"
+            alt=""
+          />
+        </div>
+        <div className="">
+          <ShopCard shops={shops} setShops={setShops} />
+        </div>
       </div>
     </>
   );
