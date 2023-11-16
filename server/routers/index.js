@@ -1,15 +1,12 @@
 const Controller = require("../controllers/controller");
 const router = require("express").Router();
 const authentication = require("../middlewares/authentication");
-const authorization = require("../middlewares/authorization");
 
 router.post("/register", Controller.register);
 router.post("/login", Controller.login);
 router.post("/google-sign", Controller.googleSign);
 router.get("/items", Controller.getItems);
 router.get("/shops", Controller.getShops);
-
-router.get("/nodemailer", Controller.nodemailer);
 
 router.use(authentication);
 

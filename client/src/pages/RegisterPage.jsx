@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { url } from "../configs/config";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -47,39 +47,49 @@ const RegisterPage = () => {
   };
   return (
     <>
-      <div className="flex flex-row justify-center h-screen w-full bg-aldergrey">
-        <form className="" onSubmit={formOnSubmitHandler}>
-          <p>
-            <input
-              className=""
-              type="text"
-              placeholder="Username"
-              defaultValue={username}
-              onChange={inputUsernameOnChangeHandler}
+      <div className="flex flex-col justify-center items-center h-screen w-full bg-royalblue">
+        <img
+          className="h-24"
+          src="https://ik.imagekit.io/alder/FortniteLogo.png?updatedAt=1699977655775"
+          alt="Fortnite"
+        />
+        <form className="flex flex-col gap-3" onSubmit={formOnSubmitHandler}>
+          <input
+            className="py-1 px-2 rounded-md text-sm"
+            type="text"
+            placeholder="Username"
+            defaultValue={username}
+            onChange={inputUsernameOnChangeHandler}
+          />
+          <input
+            className="py-1 px-2 rounded-md text-sm"
+            type="text"
+            placeholder="Email"
+            defaultValue={email}
+            onChange={inputEmailOnChangeHandler}
+          />
+          <input
+            className="py-1 px-2 rounded-md text-sm"
+            type="password"
+            placeholder="Password"
+            defaultValue={password}
+            onChange={inputPasswordOnChangeHandler}
+          />
+          <button type="submit">
+            <img
+              className="h-4 mx-auto"
+              src="https://ik.imagekit.io/alder/REGISTER.png?updatedAt=1700154788293"
+              alt="REGISTER"
             />
-          </p>
-          <p>
-            <input
-              className=""
-              type="text"
-              placeholder="Email"
-              defaultValue={email}
-              onChange={inputEmailOnChangeHandler}
-            />
-          </p>
-          <p>
-            <input
-              className=""
-              type="password"
-              placeholder="Password"
-              defaultValue={password}
-              onChange={inputPasswordOnChangeHandler}
-            />
-          </p>
-          <p></p>
-          <button className="" type="submit">
-            Register
           </button>
+          <br />
+          <Link to={"/login"}>
+            <img
+              className="h-4 mx-auto"
+              src="https://ik.imagekit.io/alder/ALREADY%20HAVE%20ACCOUNT.png?updatedAt=1700154694886"
+              alt="ALREADY HAVE ACCOUNT?"
+            />
+          </Link>
         </form>
       </div>
     </>

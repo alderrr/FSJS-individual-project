@@ -41,7 +41,7 @@ const LoginPage = () => {
     }
   };
   const googleSignIn = async (credentialResponse) => {
-    console.log(credentialResponse);
+    // console.log(credentialResponse);
     try {
       const { data } = await axios({
         url: `${url}/google-sign`,
@@ -71,29 +71,33 @@ const LoginPage = () => {
   };
   return (
     <>
-      <div className="flex flex-row justify-center h-screen w-full bg-aldergrey">
-        <form className="" onSubmit={formOnSubmitHandler}>
-          <p>
-            <input
-              className="bg-stone-200 text-stone-200"
-              type="text"
-              placeholder="Email"
-              defaultValue={email}
-              onChange={inputEmailOnChangeHandler}
+      <div className="flex flex-col justify-center items-center h-screen w-full bg-royalblue">
+        <img
+          className="h-24"
+          src="https://ik.imagekit.io/alder/FortniteLogo.png?updatedAt=1699977655775"
+          alt="Fortnite"
+        />
+        <form className="flex flex-col gap-3" onSubmit={formOnSubmitHandler}>
+          <input
+            className="py-1 px-2 rounded-md text-sm"
+            type="text"
+            placeholder="Email"
+            defaultValue={email}
+            onChange={inputEmailOnChangeHandler}
+          />
+          <input
+            className="py-1 px-2 rounded-md text-sm"
+            type="password"
+            placeholder="Password"
+            defaultValue={password}
+            onChange={inputPasswordOnChangeHandler}
+          />
+          <button type="submit">
+            <img
+              className="h-4 mx-auto"
+              src="https://ik.imagekit.io/alder/SIGN%20IN.png?updatedAt=1700152594038"
+              alt="SIGN IN"
             />
-          </p>
-          <p>
-            <input
-              className="bg-stone-200"
-              type="password"
-              placeholder="Password"
-              defaultValue={password}
-              onChange={inputPasswordOnChangeHandler}
-            />
-          </p>
-          <p></p>
-          <button className="" type="submit">
-            Sign In
           </button>
           <GoogleOAuthProvider clientId="863067018828-5sc2a5stj8uue7oes613dl2qcudh58b1.apps.googleusercontent.com">
             <GoogleLogin
@@ -103,12 +107,13 @@ const LoginPage = () => {
               }}
             />
           </GoogleOAuthProvider>
-          <hr />
-          <p>
-            <Link to={"/register"} className="">
-              Create new account
-            </Link>
-          </p>
+          <Link to={"/register"}>
+            <img
+              className="h-4 mx-auto"
+              src="https://ik.imagekit.io/alder/CREATE%20NEW%20ACCOUNT.png?updatedAt=1700152731256"
+              alt="CREATE NEW ACCOUNT"
+            />
+          </Link>
         </form>
       </div>
     </>

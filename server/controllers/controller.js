@@ -103,7 +103,6 @@ class Controller {
       next(error);
     }
   }
-
   static async getItems(req, res, next) {
     try {
       const { data } = await axios({
@@ -127,7 +126,6 @@ class Controller {
       next(error);
     }
   }
-
   static async getShops(req, res, next) {
     try {
       const { data } = await axios({
@@ -282,7 +280,7 @@ const fetchWishlistRecipients = async (ItemIdArray) => {
   }
 };
 const job = new CronJob(
-  "00 08 * * *", // cronTime: At 08:00 Every Day
+  "05 07 * * *", // cronTime: At 07:05 Every Day
   async function () {
     try {
       const { data } = await axios({
@@ -300,11 +298,9 @@ const job = new CronJob(
           shop.mainType === "wrap" ||
           shop.mainType === "bundle"
       );
-      // console.log(filterData);
       const ItemIdArray = filterData.map((filter) => {
         return filter.mainId;
       });
-      // console.log(ItemIdArray);
       const recipients = await fetchWishlistRecipients(ItemIdArray);
       if (recipients.length > 0) {
         console.log("Sending email to:", recipients.join(", "));
