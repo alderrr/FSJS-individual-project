@@ -13,15 +13,11 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true,
       },
-      type: {
-        type: Sequelize.STRING,
-      },
+
       name: {
         type: Sequelize.STRING,
       },
-      description: {
-        type: Sequelize.STRING,
-      },
+
       image: {
         type: Sequelize.STRING,
       },

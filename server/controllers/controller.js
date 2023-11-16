@@ -21,7 +21,7 @@ class Controller {
         email: newUser.email,
       });
     } catch (error) {
-      console.log(error);
+      console.log(error, "register");
       next(error);
     }
   }
@@ -66,7 +66,7 @@ class Controller {
         };
       }
     } catch (error) {
-      console.log(error);
+      console.log(error, "login");
       next(error);
     }
   }
@@ -109,15 +109,23 @@ class Controller {
         method: "get",
         headers: { Authorization: fornite_api },
       });
-      const filterData = data.items.filter((item) => item.price > 0);
+      const filterData = data.items.filter(
+        (item) =>
+          item.price > 0 &&
+          (item.type.id === "outfit" ||
+            item.type.id === "pickaxe" ||
+            item.type.id === "emote" ||
+            item.type.id === "glider" ||
+            item.type.id === "backpack" ||
+            item.type.id === "wrap")
+      );
       // console.log(data);
       res.status(200).json(filterData);
     } catch (error) {
-      console.log(error);
+      console.log(error, "getItems");
       next(error);
     }
   }
-
   static async getShops(req, res, next) {
     try {
       const { data } = await axios({
@@ -125,10 +133,19 @@ class Controller {
         method: "get",
         headers: { Authorization: fornite_api },
       });
-      // console.log(data);
-      res.status(200).json(data.shop);
+      const filterData = data.shop.filter(
+        (shop) =>
+          shop.mainType === "outfit" ||
+          shop.mainType === "pickaxe" ||
+          shop.mainType === "emote" ||
+          shop.mainType === "glider" ||
+          shop.mainType === "backpack" ||
+          shop.mainType === "wrap"
+      );
+      // console.log(filterData);
+      res.status(200).json(filterData);
     } catch (error) {
-      console.log(error);
+      console.log(error, "getShops");
       next(error);
     }
   }
@@ -140,12 +157,10 @@ class Controller {
           name: `Please Login First`,
         };
       }
-      const { ItemId, type, name, description, image } = req.body;
+      const { ItemId, name, image } = req.body;
       const payload = {
         ItemId,
-        type,
         name,
-        description,
         image,
         UserId,
       };
@@ -158,9 +173,52 @@ class Controller {
       next(error);
     }
   }
-  static async getWishlist(req, res, next) {}
+  static async getWishlist(req, res, next) {
+    try {
+      const UserId = req.user.id;
+      const data = await Wishlist.findAll({
+        where: {
+          UserId,
+        },
+        include: [
+          {
+            model: User,
+            attributes: {
+              exclude: ["password"],
+            },
+          },
+        ],
+      });
+      // console.log(data);
+      res.status(200).json(data);
+    } catch (error) {
+      console.log(error, "getWishlist");
+      next(error);
+    }
+  }
   static async editWishlist(req, res, next) {}
-  static async deleteWishlist(req, res, next) {}
+  static async deleteWishlist(req, res, next) {
+    try {
+      const id = req.params.id;
+      const foundWishlist = await Wishlist.findByPk(id);
+      if (!foundWishlist) {
+        throw {
+          name: `Item not found`,
+        };
+      }
+      await Wishlist.destroy({
+        where: {
+          id,
+        },
+      });
+      res.status(200).json({
+        message: `Item removed from Wishlist`,
+      });
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
 }
 
 module.exports = Controller;

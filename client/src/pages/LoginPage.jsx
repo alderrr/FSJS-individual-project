@@ -1,16 +1,53 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import Toastify from "toastify-js";
+import Swal from "sweetalert2";
+import { url } from "../configs/config";
+import axios from "axios";
+import { useState } from "react";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const inputEmailOnChangeHandler = (event) => {
+    setEmail(event.target.value);
+  };
+  const inputPasswordOnChangeHandler = (event) => {
+    setPassword(event.target.value);
+  };
+  const formOnSubmitHandler = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await axios.post(`${url}/login`, { email, password });
+      const access_token = data.access_token;
+      localStorage.setItem("access_token", access_token);
+      navigate("/");
+      Swal.fire({
+        title: "Welcome to FortHub",
+      });
+    } catch (error) {
+      console.log(error);
+      Toastify({
+        text: error.response.data.message,
+        className: "info",
+        style: {
+          background: "linear-gradient(to right, #ff9a00, #ff5a00)",
+        },
+      }).showToast();
+    }
+  };
   return (
     <>
       <div className="flex flex-row justify-center h-screen w-full bg-aldergrey">
-        <form className="">
+        <form className="" onSubmit={formOnSubmitHandler}>
           <p>
             <input
               className="bg-stone-200 text-stone-200"
               type="text"
               placeholder="Email"
+              defaultValue={email}
+              onChange={inputEmailOnChangeHandler}
             />
           </p>
           <p>
@@ -18,6 +55,8 @@ const LoginPage = () => {
               className="bg-stone-200"
               type="password"
               placeholder="Password"
+              defaultValue={password}
+              onChange={inputPasswordOnChangeHandler}
             />
           </p>
           <p></p>
@@ -33,9 +72,7 @@ const LoginPage = () => {
                 console.log("Login Failed");
               }}
             />
-            ;
           </GoogleOAuthProvider>
-          ;
           <hr />
           <p>
             <Link to={"/register"} className="">

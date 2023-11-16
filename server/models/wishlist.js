@@ -21,18 +21,6 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      type: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: "Type is required",
-          },
-          notEmpty: {
-            msg: "Type is required",
-          },
-        },
-      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -42,18 +30,6 @@ module.exports = (sequelize, DataTypes) => {
           },
           notEmpty: {
             msg: "Name is required",
-          },
-        },
-      },
-      description: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: "Description is required",
-          },
-          notEmpty: {
-            msg: "Description is required",
           },
         },
       },

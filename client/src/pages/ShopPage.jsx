@@ -22,7 +22,12 @@ const ShopPage = () => {
     }
     fetchShops();
   }, []);
-  if (isLoading) return <p className="h-screen bg-aldergrey animate-pulse"></p>;
+  if (isLoading)
+    return (
+      <div className="h-screen w-full bg-royalblue">
+        <p className="h-screen bg-aldergrey animate-pulse"></p>
+      </div>
+    );
   if (error)
     return (
       <p className="h-screen bg-aldergrey text-red-500">

@@ -12,8 +12,8 @@ const HomePage = () => {
       try {
         setIsLoading(true);
         const { data } = await axios.get(`${url}/items`);
-        setItems(data.slice(0, 100));
-        // setItems(data);
+        // setItems(data.slice(0, 100));
+        setItems(data);
       } catch (error) {
         console.log(error);
         setError(error);
@@ -24,10 +24,14 @@ const HomePage = () => {
     fetchItems();
   }, []);
   if (isLoading)
-    return <p className="h-screen w-full bg-aldergrey animate-pulse"></p>;
+    return (
+      <div className="h-[100dvh] w-[100dvw] bg-royalblue">
+        <p className="h-[100dvh] w-[100dvw] bg-aldergrey animate-pulse"></p>;
+      </div>
+    );
   if (error)
     return (
-      <p className="h-screen bg-aldergrey text-red-500">
+      <p className="h-[100dvh] bg-aldergrey text-red-500">
         Error fetching, please try again later
       </p>
     );

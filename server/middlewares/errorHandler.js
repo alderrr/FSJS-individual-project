@@ -14,15 +14,14 @@ function errorHandler(err, req, res, next) {
     if (message === `Validation isEmail on email failed`) {
       message = `Invalid Email Format`;
     }
+    if (message === `ItemId must be unique`) {
+      message = `Item already wishlisted`;
+    }
   }
   if (err.name === `SequelizeDatabaseError`) {
     status = 400;
     message = `Invalid Data Type`;
   }
-  // if (err.name === `file is required`) {
-  //   status = 400;
-  //   message = `file is required`;
-  // }
   if (err.name === `Name is required`) {
     status = 400;
     message = `Name is required`;
@@ -34,6 +33,10 @@ function errorHandler(err, req, res, next) {
   if (err.name === `Password is required`) {
     status = 400;
     message = `Password is required`;
+  }
+  if (err.name === `Please Login First`) {
+    status = 400;
+    message = `Please Login First`;
   }
   if (err.name === `Invalid email/password`) {
     status = 401;
