@@ -1,11 +1,9 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
 import { url } from "../configs/config";
 import axios from "axios";
 import Toastify from "toastify-js";
 import Swal from "sweetalert2";
 
 const ItemCard = ({ items, setItems }) => {
-  const navigate = useNavigate();
   const handleAddWishlist = async (ItemId, name, image) => {
     try {
       const payload = {

@@ -40,32 +40,35 @@ const LoginPage = () => {
       }).showToast();
     }
   };
-  // const googleSignIn = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const { data } = await axios({
-  //       url: `${url}/google-sign`,
-  //       method: "post",
-  //       headers: {
-  //         google_token: response.credential,
-  //       },
-  //     });
-  //     localStorage.setItem("access_token", data.access_token);
-  //     navigate("/");
-  //     Swal.fire({
-  //       title: "Welcome to FortHub",
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //     Toastify({
-  //       text: error.response.data.message,
-  //       className: "info",
-  //       style: {
-  //         background: "linear-gradient(to right, #ff9a00, #ff5a00)",
-  //       },
-  //     }).showToast();
-  //   }
-  // };
+  const googleSignIn = async (credentialResponse) => {
+    console.log(credentialResponse);
+    try {
+      const { data } = await axios({
+        url: `${url}/google-sign`,
+        method: "post",
+        headers: {
+          access_token: credentialResponse.credential,
+        },
+      });
+      localStorage.setItem("access_token", data.access_token);
+      navigate("/");
+      Swal.fire({
+        // title: "Welcome to FortHub",
+        icon: "success",
+        imageUrl:
+          "https://ik.imagekit.io/alder/SWAL_WELCOME%20TO%20FORTHUB.png?updatedAt=1700118165843",
+      });
+    } catch (error) {
+      console.log(error);
+      Toastify({
+        text: error.response.data.message,
+        className: "info",
+        style: {
+          background: "linear-gradient(to right, #ff9a00, #ff5a00)",
+        },
+      }).showToast();
+    }
+  };
   return (
     <>
       <div className="flex flex-row justify-center h-screen w-full bg-aldergrey">
@@ -94,9 +97,7 @@ const LoginPage = () => {
           </button>
           <GoogleOAuthProvider clientId="863067018828-5sc2a5stj8uue7oes613dl2qcudh58b1.apps.googleusercontent.com">
             <GoogleLogin
-              onSuccess={(credentialResponse) => {
-                console.log(credentialResponse);
-              }}
+              onSuccess={googleSignIn}
               onError={() => {
                 console.log("Login Failed");
               }}

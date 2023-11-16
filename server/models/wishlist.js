@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
       ItemId: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
         validate: {
           notNull: {
             msg: "ItemId is required",

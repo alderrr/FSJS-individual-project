@@ -11,7 +11,6 @@ module.exports = {
       },
       ItemId: {
         type: Sequelize.STRING,
-        unique: true,
       },
 
       name: {
@@ -27,6 +26,8 @@ module.exports = {
           model: "Users",
           key: "id",
         },
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
       createdAt: {
         allowNull: false,
