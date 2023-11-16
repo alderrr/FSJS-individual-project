@@ -140,7 +140,8 @@ class Controller {
           shop.mainType === "emote" ||
           shop.mainType === "glider" ||
           shop.mainType === "backpack" ||
-          shop.mainType === "wrap"
+          shop.mainType === "wrap" ||
+          shop.mainType === "bundle"
       );
       // console.log(filterData);
       res.status(200).json(filterData);
