@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <>
       <div className="fixed w-full bg-royalblue z-10 text-white">
-        <div className="h-12 px-6 relative flex flex-row justify-between items-center">
+        <div className="h-12 px-6 relative flex flex-row justify-between items-center mx-1">
           <img
             className="h-full"
             src="https://ik.imagekit.io/alder/FortniteLogo.png?updatedAt=1699977655775"
