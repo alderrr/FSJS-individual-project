@@ -25,7 +25,7 @@ Update: Users can edit their collection or wishlist by adding or removing items.
 
 Delete: Allow users to remove skins from their collection or wishlist.
 
-# API Documentation - Restaurant App
+# API Documentation - FORTHUB
 
 ## Models :
 
