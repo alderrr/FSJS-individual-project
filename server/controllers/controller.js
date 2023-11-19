@@ -105,6 +105,8 @@ class Controller {
   }
   static async getItems(req, res, next) {
     try {
+      console.log(req.query);
+      const searchName = req.query.name || "";
       const { data } = await axios({
         url: "https://fortniteapi.io/v2/items/list?lang=en",
         method: "get",
@@ -118,7 +120,8 @@ class Controller {
             item.type.id === "emote" ||
             item.type.id === "glider" ||
             item.type.id === "backpack" ||
-            item.type.id === "wrap")
+            item.type.id === "wrap") &&
+          item.name.toLowerCase().includes(searchName.toLowerCase())
       );
       res.status(200).json(filterData);
     } catch (error) {

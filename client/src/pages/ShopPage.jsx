@@ -44,7 +44,7 @@ const ShopPage = () => {
             alt=""
           />
         </div>
-        <div className="">
+        <div className="bg-aldergrey h-full w-full">
           <ShopCard shops={shops} setShops={setShops} />
         </div>
       </div>
