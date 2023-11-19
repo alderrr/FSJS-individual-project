@@ -3,6 +3,12 @@
 
 # Individual Project Phase 2
 
+> Deployed Server: https://projectforthub.my.id/
+
+> Deployed Client: https://iproject-forthub.web.app/
+
+> Github Repository: https://github.com/alderrr/IP-Alder
+
 Fortnite Skin Tracker and Wishlist Manager
 
 Description:
@@ -18,3 +24,138 @@ Read: Display a list of all available Fortnite skins, including details and imag
 Update: Users can edit their collection or wishlist by adding or removing items.
 
 Delete: Allow users to remove skins from their collection or wishlist.
+
+# API Documentation - Restaurant App
+
+## Models :
+
+_User_
+
+```
+- id : primary
+- username : string, required
+- email : string, required, unique, email format
+- password : string, required, length min 8
+- imageUrl : string
+```
+
+_Wishlist_
+
+```
+- id : primary
+- ItemId : string, required
+- name: string, required
+- image: string, required
+- UserId : integer, required
+```
+
+&nbsp;
+
+## Endpoints :
+
+List of available endpoints:
+
+- `POST /register`
+- `POST /login`
+- `POST /google-sign`
+- `GET /items`
+- `GET /shops`
+
+Routes below need authentication:
+
+- `POST /wishlist`
+- `GET /wishlist`
+- `GET /wishlist/:id`
+- `PUT /wishlist/:id`
+- `DELETE /wishlist/:id`
+
+&nbsp;
+
+## 1. POST /register
+
+Request:
+
+- body
+
+```json
+{
+  "username": "string",
+  "email": "string",
+  "password": "string"
+}
+```
+
+_Response (201 - Created)_
+
+```json
+{
+  "id": "integer",
+  "username": "string",
+  "email": "string"
+}
+```
+
+_Response (400 - Bad Request)_
+
+```json
+{
+  "message": "Email is required"
+}
+OR
+{
+  "message": "Invalid email format"
+}
+OR
+{
+  "message": "Email must be unique"
+}
+OR
+{
+  "message": "Password is required"
+}
+OR
+{
+  "message": "Password must have at least 8 characters"
+}
+```
+
+&nbsp;
+
+## 2. POST /login
+
+Request:
+
+- body
+
+```json
+{
+  "email": "string",
+  "password": "string"
+}
+```
+
+_Response (200 - OK)_
+
+```json
+{
+  "access_token": "string"
+}
+```
+
+_Response (400 - Bad Request)_
+
+```json
+{
+  "message": "Email is required"
+}
+OR
+{
+  "message": "Password is required"
+}
+OR
+{
+  "message": "Invalid email/password"
+}
+```
+
+## README IN-PROGRESS

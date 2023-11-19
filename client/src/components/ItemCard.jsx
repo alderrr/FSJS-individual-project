@@ -60,31 +60,40 @@ const ItemCard = ({ items, setItems }) => {
   };
   return (
     <>
-      <div className="w-[100dvw] px-24 pt-24 py-10 gap-4 flex flex-row flex-wrap justify-center bg-aldergrey">
-        {items?.map((item) => {
-          return (
-            <div
-              key={item?.id}
-              className="cursor-pointer"
-              onClick={() => {
-                handleAddWishlist(
-                  item.id,
-                  item.name,
-                  item.images.full_background
-                );
-              }}
-            >
-              <div className="bg-white w-48 hover:scale-110 transition-all hover:brightness-125">
-                <img
-                  className="rounded-2xl"
-                  src={item?.images?.full_background}
-                  alt={item?.name}
-                />
+      {items?.length === 0 ? (
+        <div className="flex flex-row justify-center items-center py-[120px]">
+          <img
+            src="https://ik.imagekit.io/alder/NO%20ITEM%20FOUND.png?updatedAt=1700378590175"
+            alt="NO ITEM FOUND"
+          />
+        </div>
+      ) : (
+        <div className="w-[100dvw] px-24 pt-[110px] gap-4 flex flex-row flex-wrap justify-center bg-aldergrey">
+          {items?.map((item) => {
+            return (
+              <div
+                key={item?.id}
+                className="cursor-pointer"
+                onClick={() => {
+                  handleAddWishlist(
+                    item.id,
+                    item.name,
+                    item.images.full_background
+                  );
+                }}
+              >
+                <div className="bg-white w-48 hover:scale-110 transition-all hover:brightness-125">
+                  <img
+                    className="rounded-2xl"
+                    src={item?.images?.full_background}
+                    alt={item?.name}
+                  />
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
     </>
   );
 };
