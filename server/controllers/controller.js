@@ -105,7 +105,7 @@ class Controller {
   }
   static async getItems(req, res, next) {
     try {
-      console.log(req.query);
+      // console.log(req.query);
       const searchName = req.query.name || "";
       const { data } = await axios({
         url: "https://fortniteapi.io/v2/items/list?lang=en",
