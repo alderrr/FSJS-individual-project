@@ -7,7 +7,7 @@
 
 > Deployed Client: https://iproject-forthub.web.app/
 
-> Github Repository: https://github.com/alderrr/IP-Alder
+> Github Repository: https://github.com/alderrr/FSJS-individual-project
 
 Fortnite Skin Tracker and Wishlist Manager
 
